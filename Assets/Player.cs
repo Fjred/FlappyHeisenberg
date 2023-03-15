@@ -5,11 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    public Rigidbody2D rb;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.position += Vector3.up;
+            rb.velocity = new Vector2(0, 5);
         }
     }
 }
