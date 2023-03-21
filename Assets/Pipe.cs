@@ -9,6 +9,11 @@ public class Pipe : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.left * speed * Time.deltaTime;
+
+        if (transform.position.x < -11f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     
