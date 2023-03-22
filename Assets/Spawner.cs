@@ -5,9 +5,15 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject prefab;
+
+
     public float nextSpawnTime;
     public float spawnInterval;
 
+    private void Start()
+    {
+        nextSpawnTime = Time.time;
+    }
 
     void Update()
     {

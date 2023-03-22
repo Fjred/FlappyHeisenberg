@@ -11,28 +11,33 @@ public class Player : MonoBehaviour
     public float points;
 
     public TMP_Text pointsTxt;
+
+    public float jumpSpeed;
     void Update()
+    {
+        Jump();
+
+        pointsTxt.text = $"Points: {points}";
+
+        transform.rotation = Quaternion.Euler(0, 0, rb.velocity.y * 5);
+    }
+
+    void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(0, 5);
+            rb.velocity = new Vector2(0, jumpSpeed);
         }
-
-        pointsTxt.text = $"Points: {points}";
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Pipe") || collision.gameObject.CompareTag("Ground"))
-        {
-            SceneManager.LoadScene(0);
-            
-        }
+        // jumps into death scene
+        SceneManager.LoadScene(1);
 
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Point"))
         {
